@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metalmouth Radio</title>
 
+<link rel="manifest" href="manifest.json">
+
+<style>
+body{
+  margin:0;
+  background:#000;
+  color:white;
+  font-family:Arial, sans-serif;
+  text-align:center;
+}
+
+.logo{
+  width:250px;
+  margin-top:30px;
+}
+
+button{
+  padding:15px 40px;
+  font-size:20px;
+  background:#cc0000;
+  color:white;
+  border:none;
+  margin-top:20px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#ff0000;
+}
+
+.status{
+  margin-top:15px;
+  font-size:16px;
+  color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<img src="logo.png" class="logo">
+<h1>METALMOUTH RADIO</h1>
+<p>Live. Loud. Independent.</p>
+
+<audio id="radio" preload="none">
+  <source src="https://stream.radiojar.com/6g9br3qxnv8uv" type="audio/mpeg">
+</audio>
+
+<button onclick="togglePlay()" id="playBtn">▶ PLAY</button>
+
+<div class="status" id="status">Ready</div>
+
+<script>
+let radio = document.getElementById("radio");
+let button = document.getElementById("playBtn");
+let statusText = document.getElementById("status");
+let playing = false;
+
+function togglePlay(){
+  if(!playing){
+    radio.play().then(()=>{
+      playing = true;
+      button.innerHTML = "⏸ STOP";
+      statusText.innerHTML = "LIVE & LOUD 🤘";
+    }).catch(()=>{
+      statusText.innerHTML = "Tap again to start.";
+    });
+  } else {
+    radio.pause();
+    playing = false;
+    button.innerHTML = "▶ PLAY";
+    statusText.innerHTML = "Stopped";
+  }
+}
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
+</script>
+
+</body>
+</html>

@@ -64,8 +64,13 @@
       to { box-shadow: 0 0 30px #ff5555; }
     }
     .now-playing {
-      font-size: 20px;
       margin: 10px 0;
+    }
+    iframe.radiojar-widget {
+      border: none;
+      width: 320px;
+      height: 60px;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -74,7 +79,9 @@
   <h1>Metalmouth Radio</h1>
 
   <div class="on-air">ON AIR</div>
-  <div class="now-playing" id="nowPlaying">Loading...</div>
+  <div class="now-playing">
+    <iframe class="radiojar-widget" src="https://widgets.radiojar.com/6g9br3qxnv8uv?type=now_playing"></iframe>
+  </div>
 
   <audio id="radioPlayer" preload="none"></audio>
   <button id="playBtn">PLAY</button>
@@ -89,7 +96,6 @@
   <script>
     const player = document.getElementById('radioPlayer');
     const btn = document.getElementById('playBtn');
-    const nowPlaying = document.getElementById('nowPlaying');
     player.src = "http://stream.radiojar.com/6g9br3qxnv8uv";
 
     let isPlaying = false;
@@ -103,24 +109,9 @@
       }
       isPlaying = !isPlaying;
     });
-
-    // Fetch now playing info from Radiojar every 10 seconds
-    async function fetchNowPlaying() {
-      try {
-        const response = await fetch('https://api.radiojar.com/stations/6g9br3qxnv8uv/now_playing');
-        const data = await response.json();
-        if (data && data.current_song) {
-          nowPlaying.textContent = `${data.current_song.artist} – ${data.current_song.title}`;
-        } else {
-          nowPlaying.textContent = 'No song info available';
-        }
-      } catch (error) {
-        nowPlaying.textContent = 'Error loading song info';
-      }
-    }
-
-    fetchNowPlaying();
-    setInterval(fetchNowPlaying, 10000); // Update every 10 seconds
   </script>
+</body>
+</html>
+
 </body>
 </html>

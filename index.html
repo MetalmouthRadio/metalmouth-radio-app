@@ -11,15 +11,18 @@
       font-family: 'Metal Mania', sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       min-height: 100vh;
       margin: 0;
       text-align: center;
+      padding-top: 20px;
     }
     img.logo {
-      width: 200px;
+      width: 500px; /* wider to match letters */
+      height: 200px; /* taller to reach top */
       margin-bottom: 20px;
+      object-fit: contain;
     }
     button {
       padding: 15px 30px;
@@ -96,6 +99,7 @@
   <script>
     const player = document.getElementById('radioPlayer');
     const btn = document.getElementById('playBtn');
+
     player.src = "http://stream.radiojar.com/6g9br3qxnv8uv";
 
     let isPlaying = false;
@@ -110,8 +114,5 @@
       isPlaying = !isPlaying;
     });
   </script>
-</body>
-</html>
-
 </body>
 </html>

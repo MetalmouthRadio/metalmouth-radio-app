@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metalmouth Radio</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Metal Mania', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    img.logo {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      margin: 10px;
+      background: #ff0000;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ff5555;
+    }
+    h1 {
+      font-size: 48px;
+      text-shadow: 2px 2px 5px #ff0000;
+      margin: 10px 0 30px 0;
+    }
+    .links a {
+      display: inline-block;
+      margin: 5px 10px;
+      color: #ff0000;
+      font-size: 18px;
+      text-decoration: none;
+    }
+    .links a:hover {
+      color: #ff5555;
+    }
+  </style>
+</head>
+<body>
+  <img src="Metalmouth Radio logo.jpg" alt="Metalmouth Radio Logo" class="logo">
+  <h1>Metalmouth Radio</h1>
+
+  <audio id="radioPlayer" preload="none"></audio>
+  <button id="playBtn">PLAY</button>
+
+  <div class="links">
+    <a href="https://www.facebook.com/metalmouthradio/" target="_blank">Facebook</a>
+    <a href="https://www.instagram.com/metalmouthradio/" target="_blank">Instagram</a>
+    <a href="https://www.youtube.com/@metalmouthradio" target="_blank">YouTube</a>
+    <a href="http://metalmouthradio.threadless.com" target="_blank">Merch</a>
+  </div>
+
+  <script>
+    const player = document.getElementById('radioPlayer');
+    const btn = document.getElementById('playBtn');
+    player.src = "http://stream.radiojar.com/6g9br3qxnv8uv";
+
+    let isPlaying = false;
+    btn.addEventListener('click', () => {
+      if (isPlaying) {
+        player.pause();
+        btn.textContent = 'PLAY';
+      } else {
+        player.play();
+        btn.textContent = 'STOP';
+      }
+      isPlaying = !isPlaying;
+    });
+  </script>
+</body>
+</html>
